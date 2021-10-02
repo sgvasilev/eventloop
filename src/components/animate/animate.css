@@ -1,0 +1,108 @@
+.start {
+  color: aqua;
+}
+
+.borderStyle {
+  max-width: 300px;
+  border: 2px solid #3f3f3f;
+  border-radius: 5px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  margin: 5px;
+  z-index: 1;
+  font-size: 1.25rem;
+}
+
+.borderStyleQueue {
+  border: 2px solid #3f3f3f;
+  border-radius: 5px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  margin: 5px;
+  z-index: 1;
+  font-size: 1.25rem;
+}
+
+.borderStyleWebApi {
+  max-width: 300px;
+  border: 2px solid #3f3f3f;
+  border-radius: 5px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  margin: 5px;
+  z-index: 1;
+  font-size: 1.25rem;
+}
+.nonevisible {
+  visibility: hidden;
+}
+
+.progressbar {
+  display: flex;
+  align-self: end;
+}
+
+#percent {
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 42px;
+  left: 17px;
+  width: 66px;
+  /*   border: 1px solid #000000; */
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(#1ba8e9, #efe222);
+  border-radius: 50%;
+  align-self: center;
+  align-items: center;
+  animation: animate 0.5s linear infinite;
+  -webkit-box-shadow: 0px 0px 22px 2px rgba(49, 90, 171, 0.2);
+  -moz-box-shadow: 0px 0px 22px 2px rgba(49, 90, 171, 0.2);
+  box-shadow: 0px 0px 22px 2px rgba(49, 90, 171, 0.2);
+}
+
+@keyframes animate {
+  from {
+    transfrom: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes antianimate {
+  from {
+    transfrom: rotate(-0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.circle:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 4;
+
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.index {
+  z-index: 5;
+  animation: antianimate 0.5s linear infinite;
+}

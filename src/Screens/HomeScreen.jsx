@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import User from '../components/user/User'
 import Button from '../components/buttons/Button'
 import CallStack from '../components/callstack/CallStack'
+import WebApi from '../components/webapi/WebApi'
+import CallbackQueue from '../components/callbackqueue/CallbackQueue'
 
 import initalValues from '../components/data/items.parts'
 
-import { ButtonContainer, Container } from './homescreen.components'
 import './HomeScreen.css'
-import WebApi from '../components/webapi/WebApi'
-import CallbackQueue from '../components/callbackqueue/CallbackQueue'
+import { ButtonContainer, Container } from './homescreen.components'
 
 const HomeScreen = () => {
   const [itemPos, setItemPos] = useState(initalValues.items)
@@ -26,19 +26,42 @@ const HomeScreen = () => {
           <User itemPosUser={itemPos} setItemPosUser={setItemPos} />
           <Button rotate={rotate} setRotate={setRotate} />
         </ButtonContainer>
-        <CallStack itemPos={itemPos} rotate={rotate} setRotate={setRotate} />
-        <WebApi></WebApi>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <CallStack
+              itemPos={itemPos}
+              rotate={rotate}
+              setRotate={setRotate}
+            />
+            <WebApi></WebApi>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              maxWidth: '1100px',
+              margin: ' 0 auto',
+              textAlign: 'end',
+              width: '100%',
+            }}
+          >
+            <CallbackQueue></CallbackQueue>
+          </div>
+        </div>
       </Container>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          maxWidth: '1440px',
-          margin: '0 auto',
-        }}
-      >
-        <CallbackQueue></CallbackQueue>
-      </div>
     </>
   )
 }

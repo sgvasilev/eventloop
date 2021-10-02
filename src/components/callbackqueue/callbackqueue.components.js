@@ -8,8 +8,9 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
-  margin-left: 400px;
-  margin-right: 40px;
+  margin: 0;
+  padding: 0;
   justify-content: flex-end;
+  flex-direction: row-reverse;
 `
+// / margin-left: 400px;

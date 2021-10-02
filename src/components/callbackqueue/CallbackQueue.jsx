@@ -3,7 +3,14 @@ import React from 'react'
 import { Container } from './callbackqueue.components'
 
 const CallbackQueue = () => {
-  return <Container>Callback queue</Container>
+  return (
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <h3>Callback queue</h3>
+        <Container id='queue'></Container>{' '}
+      </div>
+    </>
+  )
 }
 
 export default CallbackQueue
