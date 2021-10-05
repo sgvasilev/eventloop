@@ -1,16 +1,18 @@
 import gsap from 'gsap/all'
 
+import '../animate/animate.css'
+
 /**
  *
  * @param {string} element inserted element
+ * @param {string} data text in inserted element
  * @param {number} id the ID of inserted element
- * @param {string} payload text in inserted element
  */
-export const drawElement = (element, id, payload) => {
+export const drawElement = (element, data, id) => {
   element.insertAdjacentHTML(
     'afterBegin',
     `<div class='borderStyle nonevisible'
-        id='box${id}'>${payload}</div>`
+        id='box${id}'>${data}</div>`
   )
 }
 
@@ -33,12 +35,11 @@ export function removeElementAtLastCircle(element) {
 }
 
 export const animationOfRemovinElement = (element) => {
-  console.log(element, 'last')
   let $el = '#' + element
 
   gsap.to($el, {
     css: { opacity: 0 },
-    duration: 0.2,
+    duration: 0.1,
     onComplete: deleteElemAfterAnimation,
     onCompleteParams: [element],
   })
@@ -51,14 +52,49 @@ function deleteElemAfterAnimation(element) {
 export const drawElementSetTimeout = (element, id, payload) => {
   element.insertAdjacentHTML(
     'afterBegin',
-    ` <div style='display: flex' id='box${id}'>
+    `
+    <div class='container' id='box${id}'>
         <div class='borderStyleWebApi nonevisible' id='box${id}'>${payload}
         </div>           
-          <div class='circle'>
-            <div class="index" id="percent">0 %</div> 
+          <div id='circle' class='circle nonevisible'>
+            <div id='percent'>
+            <div class="index" id="percent+${id}">0</div> 
+            </div>
           </div>
         </div>
    
      `
   )
+}
+
+export const deleteElementNow = (element, time) => {
+  console.log(element, 'element', time, 'time')
+  setTimeout(() => {
+    var elem = document.getElementById(element)
+    if (elem !== null && elem !== undefined)
+      elem = document.getElementById(element)
+
+    elem?.parentNode?.removeChild(elem)
+  }, time * 1000 + 300)
+}
+
+const clearTimeline = () => {
+  tl3.clear()
+}
+
+export const tl3 = new gsap.timeline({
+  onComplete: clearTimeline,
+})
+export const startCircleAnimation = (time, id) => {
+  tl3.to('#circle', { autoAlpha: 1, duration: 0.1 })
+
+  var Cont = { val: 0 },
+    NewVal = 100
+  tl3.to(Cont, time, {
+    val: NewVal,
+    roundProps: 'val',
+    onUpdate: function () {
+      document.getElementById(`percent+${id}`).innerHTML = Cont.val
+    },
+  })
 }

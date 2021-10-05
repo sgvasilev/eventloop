@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 7px 7px;
   margin-top: 20px;
   min-height: 300px;
-  min-width: 250px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

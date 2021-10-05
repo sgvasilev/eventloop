@@ -1,66 +1,70 @@
 import React from 'react'
 
-import { animConsoleLogStart, CallbacksAnimation, tl } from '../animate/animate'
-
+import { tl } from '../factory/animationfactory'
+import { tl3 } from '../functions/functions'
+import { factory } from '../factory/animationfactory'
 import { Container } from './callstack.components.js'
-import {
-  animationOfRemovinElement,
-  drawElement,
-  removeElementAtLastCircle,
-} from '../functions/functions'
+import { drawElement, removeElement } from '../functions/functions'
 
 const CallStack = ({ itemPos, rotate, setRotate }) => {
   let ORDER = []
+  let tempORDER = []
   itemPos.forEach((el) => {
     ORDER.push(el)
+    tempORDER.push(el)
   })
-  var callbackArr = []
-  var tempORDER = ORDER
+
+  let callbackArr = []
+  let animations = []
+
+  tempORDER.forEach((el) => {
+    animations.push(
+      factory.create(el.type, el.target, el.name, el.id, el?.payload)
+    )
+  })
+
   function startanimation(rotate) {
     if (rotate === true) {
       for (let i = 0; i < ORDER.length; i++) {
-        if (ORDER[i].type === 'setTimeout') {
-          ORDER[i].functionStart(
-            ORDER[i].payload.CallStack,
-            ORDER[i].payload.CallStackId
-          )
-          ORDER[i].functionMid(
-            ORDER[i].payload,
-            ORDER[i].payload,
-            ORDER[i].payload
-          )
-          callbackArr.push(ORDER[i].payload)
-          tempORDER = tempORDER.slice(1, tempORDER.length)
+        if (ORDER[i].type === 'settimeout') {
+          callbackArr.push(ORDER[i])
+          animations[i].start()
+          tempORDER.shift()
         }
         if (ORDER[i].type === 'consolelog') {
-          ORDER[i].functionStart(ORDER[i].name, ORDER[i].id)
-          ORDER[i].functionEnd(ORDER[i].name, ORDER[i].id)
-
-          tempORDER = tempORDER.slice(1, tempORDER.length)
+          tempORDER.shift()
+          animations[i].start()
         }
       }
-      console.log(callbackArr)
-      ORDER = tempORDER
 
-      if (ORDER.length === 0) {
-        const startEventCallbacks = (callbackArr) => {
-          let queue = document.getElementById('queue')
-          if (queue.childElementCount > 0) {
-            for (let i = 0; i < queue.childElementCount; i++) {
-              console.log(queue.childElementCount)
-              console.log(callbackArr)
-              tl.call(stopAnimation)
-            }
+      if (tempORDER.length === 0) {
+        if (callbackArr.length !== 0) {
+          for (let i = 0; i < callbackArr.length; i++) {
+            tl.call(removeElement(`#box${callbackArr[i].payload.QueueId}`))
+            const $el = document.querySelector(`#callstack`)
+            drawElement(
+              $el,
+              callbackArr[i].payload.Queue,
+              callbackArr[i].payload.QueueIdEnd
+            )
+            tl.from(
+              `#box${callbackArr[i].payload.QueueIdEnd}`,
+              { css: { y: -400, autoAlpha: 0 }, duration: 0.5 },
+              '<'
+            )
+            tl.to(`#box${callbackArr[i].payload.QueueIdEnd}`, {
+              y: 0,
+              duration: 0.7,
+              delay: 0.35,
+            })
+            tl.call(removeElement(`#box${callbackArr[i].payload.QueueIdEnd}`))
           }
         }
-        setTimeout(() => {
-          startEventCallbacks(callbackArr)
-        }, (tl.endTime() - 2) * 1000)
-        ORDER = ORDER.slice(1, ORDER.length)
       }
     }
   }
   startanimation(rotate)
+
   const stopAnimation = () => {
     let queueStop = document.querySelector('#queue')
     let callstackStop = document.querySelector('#callstack')
@@ -74,14 +78,16 @@ const CallStack = ({ itemPos, rotate, setRotate }) => {
         callstackStop.childElementCount === 0 &&
         webapiStop.childElementCount === 0
       )
-        setRotate(false)
+        rotate && setRotate(false)
     }
   }
+  stopAnimation()
 
   if (rotate === false) {
     var $el = 0
     if (tl && tl.time() > 0) {
       tl.clear()
+      tl3.clear()
       if (ORDER.length < 0)
         for (let i = 1; i < ORDER.length; i++) {
           $el = document.getElementById(`#box${i}`)

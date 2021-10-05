@@ -31,6 +31,7 @@ const HomeScreen = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
+            marginTop: '100px',
           }}
         >
           <div
