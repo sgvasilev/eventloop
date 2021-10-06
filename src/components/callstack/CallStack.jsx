@@ -92,6 +92,7 @@ const CallStack = ({ itemPos, rotate, setRotate }) => {
     var $el = 0
     if (tl && tl.time() > 0) {
       tl.clear()
+      tl.kill()
       tl3.clear()
       if (ORDER.length < 0)
         for (let i = 1; i < ORDER.length; i++) {

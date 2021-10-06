@@ -19,7 +19,13 @@ const HomeScreen = () => {
   return (
     <>
       <span id='logotext'>
-        <h1 style={{ margin: '25px 25px', textAlign: ' center' }}>
+        <h1
+          style={{
+            margin: '25px 25px',
+            textAlign: ' center',
+            color: '#05386b',
+          }}
+        >
           &#8594;How does event loop works?&#8594;
         </h1>
       </span>
