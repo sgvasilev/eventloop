@@ -19,12 +19,12 @@ class ConsolelogAnimation {
   start() {
     const $el = document.querySelector(`#${this.target}`)
     drawElement($el, this.data, this.id)
-    tl.from(
-      `#box${this.id}`,
-      { css: { y: -400, autoAlpha: 0 }, duration: 0.7, delay: 0.3 },
-      '<'
-    )
-    tl.to(`#box${this.id}`, { y: 0, duration: 1 })
+    tl.from(`#box${this.id}`, {
+      css: { y: -100, autoAlpha: 0 },
+      duration: 0.7,
+      delay: 0.3,
+    })
+    tl.to(`#box${this.id}`, { y: 0, duration: 0.5 })
     tl.call(removeElement(`#box${this.id}`))
   }
 }
@@ -60,7 +60,7 @@ class SettimeoutAnimation {
     gsap.from(
       `#box${this.payload.QueueId}`,
       {
-        css: { x: 400, autoAlpha: 0 },
+        css: { x: 100, autoAlpha: 0 },
         duration: 0.7,
         delay: 0.3,
       },

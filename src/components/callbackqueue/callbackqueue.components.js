@@ -13,4 +13,3 @@ export const Container = styled.div`
   justify-content: flex-end;
   flex-direction: row-reverse;
 `
-// / margin-left: 400px;

@@ -1,21 +1,40 @@
 import React from 'react'
 
 import { tl } from '../factory/animationfactory'
-import { tl3 } from '../functions/functions'
 import { factory } from '../factory/animationfactory'
 import { Container } from './callstack.components.js'
-import { drawElement, removeElement } from '../functions/functions'
+import { drawElement, removeElement, tl3 } from '../functions/functions'
 
 const CallStack = ({ itemPos, rotate, setRotate }) => {
+  const stopAnimation = () => {
+    let queueStop = document.querySelector('#queue')
+    let callstackStop = document.querySelector('#callstack')
+    let webapiStop = document.querySelector('#webapi')
+    if (
+      (queueStop && callstackStop && webapiStop) !== null &&
+      callstackStop !== undefined
+    ) {
+      if (
+        queueStop.childElementCount === 0 &&
+        callstackStop.childElementCount === 0 &&
+        webapiStop.childElementCount === 0
+      ) {
+        rotate && setRotate(false)
+        clearInterval(timerId)
+      } else {
+      }
+    }
+  }
+
   let ORDER = []
   let tempORDER = []
+  let callbackArr = []
+  let animations = []
+
   itemPos.forEach((el) => {
     ORDER.push(el)
     tempORDER.push(el)
   })
-
-  let callbackArr = []
-  let animations = []
 
   tempORDER.forEach((el) => {
     animations.push(
@@ -58,30 +77,16 @@ const CallStack = ({ itemPos, rotate, setRotate }) => {
               delay: 0.35,
             })
             tl.call(removeElement(`#box${callbackArr[i].payload.QueueIdEnd}`))
+            tl.call(removeElement(`#box${callbackArr[i].payload.CallStackId}`))
           }
         }
       }
     }
   }
   startanimation(rotate)
-
-  const stopAnimation = () => {
-    let queueStop = document.querySelector('#queue')
-    let callstackStop = document.querySelector('#callstack')
-    let webapiStop = document.querySelector('#webapi')
-    if (
-      (queueStop && callstackStop && webapiStop) !== null &&
-      callstackStop !== undefined
-    ) {
-      if (
-        queueStop.childElementCount === 0 &&
-        callstackStop.childElementCount === 0 &&
-        webapiStop.childElementCount === 0
-      )
-        rotate && setRotate(false)
-    }
-  }
-  stopAnimation()
+  let timerId = setInterval(() => {
+    stopAnimation(timerId)
+  }, 1000)
 
   if (rotate === false) {
     var $el = 0
@@ -117,9 +122,9 @@ const CallStack = ({ itemPos, rotate, setRotate }) => {
   }
 
   return (
-    <div style={{ alignSelf: 'start', display: ' flex', marginRight: '30px' }}>
+    <div style={{ alignSelf: 'start', display: ' flex' }}>
       <div style={{ textAlign: 'center' }}>
-        <h2>Call stack</h2>
+        <h2 style={{ color: '#05386b' }}>Call stack</h2>
         <Container id='callstack'></Container>
       </div>
     </div>

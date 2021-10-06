@@ -9,7 +9,7 @@ const StyledCard = styled.div`
   padding: 7px 7px;
   white-space: pre-wrap;
   word-wrap: break-word;
-  background: white;
+  background: #edf5e1;
 `
 
 const Card = ({ dataitem }) => {

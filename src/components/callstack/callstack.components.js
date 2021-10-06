@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 500px;
+  max-width: 510px;
   padding: 0;
   border: 2px solid #3f3f3f;
   border-radius: 10px;
   padding: 7px 7px;
-  margin-top: 20px;
-  min-height: 300px;
-  min-width: 320px;
+  min-height: 500px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

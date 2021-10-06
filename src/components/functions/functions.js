@@ -52,8 +52,7 @@ function deleteElemAfterAnimation(element) {
 export const drawElementSetTimeout = (element, id, payload) => {
   element.insertAdjacentHTML(
     'afterBegin',
-    `
-    <div class='container' id='box${id}'>
+    `<div class='container' id='box${id}'>
         <div class='borderStyleWebApi nonevisible' id='box${id}'>${payload}
         </div>           
           <div id='circle' class='circle nonevisible'>
@@ -61,14 +60,11 @@ export const drawElementSetTimeout = (element, id, payload) => {
             <div class="index" id="percent+${id}">0</div> 
             </div>
           </div>
-        </div>
-   
-     `
+        </div> `
   )
 }
 
 export const deleteElementNow = (element, time) => {
-  console.log(element, 'element', time, 'time')
   setTimeout(() => {
     var elem = document.getElementById(element)
     if (elem !== null && elem !== undefined)

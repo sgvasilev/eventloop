@@ -1,5 +1,3 @@
-import { animConsoleLogStart, startCallback } from '../animate/animate'
-
 const initalValues = {
   items: [
     {
@@ -7,7 +5,6 @@ const initalValues = {
       name: 'console.log("start")',
       target: 'callstack',
       type: 'consolelog',
-      functionStart: animConsoleLogStart,
     },
     {
       id: '4',
@@ -25,11 +22,8 @@ const initalValues = {
         Queue: 'console.log("inside first timeout")',
         QueueId: '7',
         QueueIdEnd: '8',
-        callback: animConsoleLogStart,
       },
-      callback: startCallback,
       type: 'settimeout',
-      //      functionMid: animWebApiMid,
     },
 
     {
@@ -37,7 +31,6 @@ const initalValues = {
       name: 'console.log("mid")',
       target: 'callstack',
       type: 'consolelog',
-      functionStart: animConsoleLogStart,
     },
     {
       id: '9',
@@ -50,14 +43,12 @@ const initalValues = {
         WebApi:
           "setTimeout(() => { \n        console.log('inside second timeout')\n       }\n },0)",
         WebApiId: '11',
-        WebApiTime: 2,
+        WebApiTime: 1,
         QueueTarget: 'queue',
         Queue: 'console.log("inside second timeout")',
         QueueId: '12',
         QueueIdEnd: '13',
-        callback: animConsoleLogStart,
       },
-      callback: startCallback,
       type: 'settimeout',
     },
 
@@ -66,7 +57,6 @@ const initalValues = {
       name: 'console.log("end")',
       target: 'callstack',
       type: 'consolelog',
-      functionStart: animConsoleLogStart,
     },
   ],
 }
