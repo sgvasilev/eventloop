@@ -10,6 +10,7 @@ import initalValues from '../components/data/items.parts'
 
 import './HomeScreen.css'
 import { ButtonContainer, Container } from './homescreen.components'
+import Footer from '../components/footer/Footer'
 
 const HomeScreen = () => {
   const [itemPos, setItemPos] = useState(initalValues.items)
@@ -17,13 +18,25 @@ const HomeScreen = () => {
 
   return (
     <>
-      <h1 style={{ margin: '25px 25px', textAlign: ' center' }}>
-        How does event loop
-      </h1>
+      <span id='logotext'>
+        <h1
+          style={{
+            margin: '25px 25px',
+            textAlign: ' center',
+            color: '#05386b',
+          }}
+        >
+          &#8594;How does event loop works?&#8594;
+        </h1>
+      </span>
 
       <Container>
         <ButtonContainer>
-          <User itemPosUser={itemPos} setItemPosUser={setItemPos} />
+          <User
+            itemPosUser={itemPos}
+            setItemPosUser={setItemPos}
+            rotate={rotate}
+          />
           <Button rotate={rotate} setRotate={setRotate} />
         </ButtonContainer>
         <div
@@ -62,6 +75,7 @@ const HomeScreen = () => {
           </div>
         </div>
       </Container>
+      <Footer />
     </>
   )
 }

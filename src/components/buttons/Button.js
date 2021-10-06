@@ -1,10 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+
 import { ReactComponent as Logo } from '../../loop.svg'
-const StyledButton = styled.button`
-  width: 75px;
-  height: 45px;
-`
+import { StyledButton } from './button.components'
 
 const Button = ({ rotate, setRotate }) => {
   function clickHandler() {
@@ -20,7 +17,12 @@ const Button = ({ rotate, setRotate }) => {
     >
       <StyledButton onClick={clickHandler}>Start</StyledButton>
       <Logo
-        style={{ display: 'flex', alignSelf: 'flex-end', width: '100px' }}
+        style={{
+          display: 'flex',
+          alignSelf: 'flex-end',
+          width: '75px',
+          color: '#05386b',
+        }}
         className={rotate ? 'rotating' : ''}
       />
     </div>

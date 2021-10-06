@@ -13,3 +13,4 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
+export const TextLogo = styled.h1``
