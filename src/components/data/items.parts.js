@@ -35,7 +35,7 @@ const initalValues = {
     {
       id: '9',
       target: 'webapi',
-      name: "function secondFunction() {\n    setTimeout(() => { \n        console.log('inside second timeout')\n       }\n }, 0)",
+      name: "function secondFunction() {\n    setTimeout(() => { \n        console.log('inside second timeout')\n       }\n }, 1000)",
       payload: {
         CallstackTarget: 'callstack',
         CallStack: 'function secondFunction()',
