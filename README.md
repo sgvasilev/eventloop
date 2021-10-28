@@ -5,6 +5,7 @@
 - React
 - react-beautiful-dnd
 - styled-components
+- gsap
 
 #### В планах реализовать:
 
